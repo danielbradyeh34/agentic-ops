@@ -41,59 +41,100 @@ const navLinks = [
 
   <body class="min-h-screen flex flex-col">
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-border">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav class="nav-blur sticky top-0 z-50" id="site-nav">
+      <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2 group">
-          <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
-          <span class="font-mono text-sm text-ink-light">ops</span>
+        <a href="/" class="flex items-center gap-2.5 group">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6" aria-hidden="true">
+            <path d="M14 2L25.66 8.73V22.27L14 29L2.34 22.27V8.73L14 2Z" fill="url(#logo-gradient)" stroke="url(#logo-stroke)" stroke-width="0.5" opacity="0.9"/>
+            <path d="M14 8L10 18H12.5L14 13.5L15.5 18H18L14 8Z" fill="white" opacity="0.95"/>
+            <defs>
+              <linearGradient id="logo-gradient" x1="2" y1="2" x2="26" y2="29" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#D97706"/>
+                <stop offset="1" stop-color="#B45309"/>
+              </linearGradient>
+              <linearGradient id="logo-stroke" x1="2" y1="2" x2="26" y2="29" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#F59E0B"/>
+                <stop offset="1" stop-color="#D97706"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="flex items-baseline gap-1">
+            <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
+            <span class="font-mono text-sm text-ink-lighter">ops</span>
+          </span>
         </a>
 
         <!-- Desktop Nav -->
-        <div class="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              href={link.href}
-              class:list={[
-                "text-sm transition-colors duration-200",
-                currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
-                  ? "text-accent font-medium"
-                  : "text-ink-light hover:text-ink",
-              ]}
-            >
-              {link.label}
-            </a>
-          ))}
+        <div class="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href));
+            return (
+              <a
+                href={link.href}
+                class:list={[
+                  "link-underline text-sm px-3 py-2 rounded-md transition-colors duration-200",
+                  isActive
+                    ? "text-accent font-medium"
+                    : "text-ink-light hover:text-ink",
+                ]}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+
+          <div class="w-px h-5 bg-border mx-2" aria-hidden="true"></div>
+
+          <a href="/subscribe" class="btn btn-primary text-xs px-4 py-2 press-scale">
+            Subscribe
+          </a>
         </div>
 
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden p-2 text-ink-light hover:text-ink transition-colors"
+          class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-md text-ink-light hover:text-ink hover:bg-cream-dark transition-all duration-200 focus-ring"
           aria-label="Toggle menu"
+          aria-expanded="false"
         >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          <svg class="w-5 h-5 transition-transform duration-300" id="menu-icon-open" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="w-5 h-5 absolute transition-transform duration-300 opacity-0 scale-75 rotate-90" id="menu-icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
       <!-- Mobile Nav -->
-      <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-cream">
-        <div class="px-6 py-4 flex flex-col gap-4">
-          {navLinks.map((link) => (
-            <a
-              href={link.href}
-              class:list={[
-                "text-sm transition-colors duration-200",
-                currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
-                  ? "text-accent font-medium"
-                  : "text-ink-light hover:text-ink",
-              ]}
-            >
-              {link.label}
+      <div
+        id="mobile-menu"
+        class="md:hidden overflow-hidden border-t border-border-light bg-cream/95 backdrop-blur-sm"
+        style="max-height: 0; opacity: 0; transition: max-height 400ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;"
+      >
+        <div class="px-6 py-5 flex flex-col gap-1 stagger-children">
+          {navLinks.map((link) => {
+            const isActive = currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href));
+            return (
+              <a
+                href={link.href}
+                class:list={[
+                  "text-sm py-2.5 px-3 rounded-md transition-all duration-200",
+                  isActive
+                    ? "text-accent font-medium bg-accent-light"
+                    : "text-ink-light hover:text-ink hover:bg-cream-dark",
+                ]}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+          <div class="mt-3 pt-3 border-t border-border-light">
+            <a href="/subscribe" class="btn btn-primary w-full justify-center text-sm press-scale">
+              Subscribe
             </a>
-          ))}
+          </div>
         </div>
       </div>
     </nav>
@@ -104,42 +145,92 @@ const navLinks = [
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-border mt-24">
-      <div class="max-w-6xl mx-auto px-6 py-12">
-        <div class="flex flex-col md:flex-row justify-between items-start gap-8">
-          <div>
-            <a href="/" class="flex items-center gap-2 mb-3">
-              <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
-              <span class="font-mono text-sm text-ink-light">ops</span>
+    <footer class="section-dark relative mt-24 overflow-hidden">
+      <!-- Top gradient border -->
+      <div class="hr-accent absolute top-0 left-0 w-full" aria-hidden="true"></div>
+
+      <!-- Dot pattern background -->
+      <div class="pattern-dots-dark absolute inset-0 opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+      <!-- Gradient orb decoration -->
+      <div class="gradient-orb-lg w-96 h-96 -top-48 -right-24 absolute opacity-30" aria-hidden="true"></div>
+
+      <div class="relative max-w-6xl mx-auto px-6 pt-16 pb-12">
+
+        <!-- Newsletter section -->
+        <div class="mb-16 pb-12 border-b border-dark-border">
+          <div class="max-w-lg">
+            <div class="accent-bar mb-6" aria-hidden="true"></div>
+            <h3 class="font-serif text-2xl text-cream mb-3">Stay in the loop</h3>
+            <p class="text-sm text-[#b0b0b0] mb-6 leading-relaxed">
+              Get insights on agentic AI and GTM operations. No spam, just signal.
+            </p>
+            <form class="flex gap-3 flex-col sm:flex-row" id="footer-newsletter">
+              <input
+                type="email"
+                placeholder="you@company.com"
+                required
+                class="flex-1 px-4 py-3 bg-dark-surface border border-dark-border rounded-md text-sm text-cream placeholder-ink-lighter focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-200"
+              />
+              <button type="submit" class="btn btn-gradient press-scale whitespace-nowrap">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Footer columns -->
+        <div class="flex flex-col md:flex-row justify-between items-start gap-10">
+          <div class="max-w-xs">
+            <a href="/" class="flex items-center gap-2.5 mb-4 group">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="transition-transform duration-300 group-hover:scale-110" aria-hidden="true">
+                <path d="M14 2L25.66 8.73V22.27L14 29L2.34 22.27V8.73L14 2Z" fill="url(#logo-gradient-footer)" opacity="0.8"/>
+                <path d="M14 8L10 18H12.5L14 13.5L15.5 18H18L14 8Z" fill="white" opacity="0.9"/>
+                <defs>
+                  <linearGradient id="logo-gradient-footer" x1="2" y1="2" x2="26" y2="29" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#D97706"/>
+                    <stop offset="1" stop-color="#B45309"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+              <span class="flex items-baseline gap-1">
+                <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
+                <span class="font-mono text-sm text-[#6b6b6b]">ops</span>
+              </span>
             </a>
-            <p class="text-sm text-ink-light max-w-xs">
+            <p class="text-sm text-[#808080] leading-relaxed">
               Where AI agents meet go-to-market operations. By Daniel Brady.
             </p>
           </div>
 
-          <div class="flex gap-12">
+          <div class="flex gap-16">
             <div>
-              <h4 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">Navigate</h4>
-              <div class="flex flex-col gap-2">
+              <h4 class="text-label text-accent mb-4">Navigate</h4>
+              <div class="flex flex-col gap-2.5">
                 {navLinks.map((link) => (
-                  <a href={link.href} class="text-sm text-ink-light hover:text-ink transition-colors">
+                  <a href={link.href} class="text-sm text-[#808080] hover:text-cream transition-colors duration-200">
                     {link.label}
                   </a>
                 ))}
               </div>
             </div>
             <div>
-              <h4 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">Connect</h4>
-              <div class="flex flex-col gap-2">
-                <a href="https://linkedin.com/in/danielbrady" class="text-sm text-ink-light hover:text-ink transition-colors">LinkedIn</a>
-                <a href="https://twitter.com/danielbrady" class="text-sm text-ink-light hover:text-ink transition-colors">X / Twitter</a>
+              <h4 class="text-label text-accent mb-4">Connect</h4>
+              <div class="flex flex-col gap-2.5">
+                <a href="https://linkedin.com/in/danielbrady" class="text-sm text-[#808080] hover:text-cream transition-colors duration-200">LinkedIn</a>
+                <a href="https://twitter.com/danielbrady" class="text-sm text-[#808080] hover:text-cream transition-colors duration-200">X / Twitter</a>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="mt-12 pt-6 border-t border-border">
-          <p class="text-xs text-ink-lighter font-mono">&copy; {new Date().getFullYear()} Daniel Brady. All rights reserved.</p>
+        <!-- Bottom bar -->
+        <div class="mt-14 pt-6 border-t border-dark-border flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-xs text-[#5a5a5a] font-mono">&copy; {new Date().getFullYear()} Daniel Brady. All rights reserved.</p>
+          <div class="flex items-center gap-1.5">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-accent animate-pulse-subtle" aria-hidden="true"></span>
+            <span class="text-xs text-[#5a5a5a] font-mono">Agents at work</span>
+          </div>
         </div>
       </div>
     </footer>
@@ -148,8 +239,38 @@ const navLinks = [
     <script>
       const btn = document.getElementById('mobile-menu-btn');
       const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('menu-icon-open');
+      const iconClose = document.getElementById('menu-icon-close');
+      let isOpen = false;
+
       btn?.addEventListener('click', () => {
-        menu?.classList.toggle('hidden');
+        isOpen = !isOpen;
+
+        if (menu) {
+          if (isOpen) {
+            menu.style.maxHeight = menu.scrollHeight + 'px';
+            menu.style.opacity = '1';
+          } else {
+            menu.style.maxHeight = '0';
+            menu.style.opacity = '0';
+          }
+        }
+
+        if (iconOpen && iconClose) {
+          if (isOpen) {
+            iconOpen.style.opacity = '0';
+            iconOpen.style.transform = 'scale(0.75) rotate(-90deg)';
+            iconClose.style.opacity = '1';
+            iconClose.style.transform = 'scale(1) rotate(0deg)';
+          } else {
+            iconOpen.style.opacity = '1';
+            iconOpen.style.transform = 'scale(1) rotate(0deg)';
+            iconClose.style.opacity = '0';
+            iconClose.style.transform = 'scale(0.75) rotate(90deg)';
+          }
+        }
+
+        btn?.setAttribute('aria-expanded', String(isOpen));
       });
     </script>
   </body>

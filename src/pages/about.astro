@@ -1,66 +1,199 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { value: "4+", label: "Agent Layers", detail: "in the GTM stack" },
+  { value: "24/7", label: "Always On", detail: "autonomous execution" },
+  { value: "100+", label: "Agents Deployed", detail: "across GTM motions" },
+];
+
+const expertise = [
+  "AI Agent Architecture",
+  "RevOps / GTM Ops",
+  "Claude & LLM Deployment",
+  "Relevance AI",
+  "CRM Data Operations",
+  "Pipeline Automation",
+  "Sales Intelligence",
+  "Workflow Orchestration",
+  "Data Enrichment",
+  "Prompt Engineering",
+];
 ---
 
 <BaseLayout title="About" description="Daniel Brady — AI GTM Ops professional deploying AI agents across the go-to-market stack.">
-  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
-    <div class="max-w-[720px] mx-auto">
-      <p class="font-mono text-sm text-accent mb-4">About</p>
-      <h1 class="text-4xl md:text-5xl mb-8">Daniel Brady</h1>
 
-      <div class="prose">
-        <p class="text-xl text-ink-light leading-relaxed mb-8">
-          I'm a GTM operations professional who builds and deploys AI agents across the
-          go-to-market stack. While most teams are still debating whether to "use AI,"
-          I'm already in production.
-        </p>
+  <!-- Hero with asymmetric layout + dot pattern -->
+  <section class="pattern-dots relative overflow-hidden">
+    <div class="gradient-orb-lg" style="width: 700px; height: 700px; top: -200px; right: -200px;"></div>
+    <div class="gradient-orb" style="width: 300px; height: 300px; bottom: -50px; left: 5%;"></div>
 
-        <h2>What I do</h2>
-        <p>
-          I work at the intersection of AI and go-to-market operations. My day job is
-          in-house GTM/RevOps, where I architect and deploy autonomous agents that handle
-          prospecting, data enrichment, content generation, and reporting.
-        </p>
-        <p>
-          I'm not a consultant who talks about AI in theory. I'm an operator who deploys
-          agents in production — using tools like Claude Code, Relevance AI, and custom-built
-          systems — and sees what actually works versus what's just hype.
-        </p>
+    <div class="container-wide relative z-10 pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-20 items-start">
+        <!-- Left: Large heading area (3 cols) -->
+        <div class="lg:col-span-3 animate-fade-in">
+          <p class="text-label mb-6" style="color: var(--color-accent);">About</p>
+          <h1 class="text-display text-balance mb-8">
+            Daniel<br />
+            <span class="text-gradient">Brady</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-ink-light leading-relaxed max-w-xl">
+            I'm a GTM operations professional who builds and deploys AI agents across the
+            go-to-market stack. While most teams are still debating whether to "use AI,"
+            I'm already in production.
+          </p>
+        </div>
 
-        <h2>Why Agentic Ops</h2>
-        <p>
+        <!-- Right: Stats cards — oversized numbers with text-gradient -->
+        <div class="lg:col-span-2 space-y-4 animate-fade-in animate-delay-3">
+          {stats.map((stat) => (
+            <div class="rounded-2xl p-px" style="background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));">
+              <div class="card-glass rounded-2xl p-6" style="border: none;">
+                <div class="flex items-baseline gap-4">
+                  <span class="text-5xl font-serif text-gradient leading-none">{stat.value}</span>
+                  <div>
+                    <p class="font-medium text-ink">{stat.label}</p>
+                    <p class="text-sm text-ink-lighter">{stat.detail}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Do -->
+  <section class="section relative">
+    <div class="container-wide relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div class="reveal-on-scroll">
+          <div class="accent-bar-wide mb-8"></div>
+          <h2 class="text-display-sm mb-8 text-balance">What I do</h2>
+          <div class="prose">
+            <p>
+              I work at the intersection of AI and go-to-market operations. My day job is
+              in-house GTM/RevOps, where I architect and deploy autonomous agents that handle
+              prospecting, data enrichment, content generation, and reporting.
+            </p>
+            <p>
+              I'm not a consultant who talks about AI in theory. I'm an operator who deploys
+              agents in production — using tools like Claude Code, Relevance AI, and custom-built
+              systems — and sees what actually works versus what's just hype.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll">
+          <div class="rounded-2xl p-px" style="background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));">
+            <div class="bg-cream rounded-2xl p-8 relative overflow-hidden">
+              <div class="gradient-orb" style="width: 200px; height: 200px; top: -50px; right: -50px;"></div>
+              <div class="relative z-10">
+                <h3 class="text-label mb-6">Expertise</h3>
+                <div class="flex flex-wrap gap-2">
+                  {expertise.map((skill) => (
+                    <span class="badge-accent">{skill}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient transition: light to dark -->
+  <div class="h-20 md:h-24" style="background: linear-gradient(to bottom, var(--color-cream), var(--color-dark));"></div>
+
+  <!-- Why Agentic Ops — Pull quote section -->
+  <section class="section-dark bg-mesh-dark pattern-dots-dark relative overflow-hidden">
+    <div class="gradient-orb" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+    <div class="container-md relative z-10 section">
+      <div class="reveal-on-scroll text-center">
+        <p class="text-2xl md:text-3xl font-serif leading-snug text-balance" style="color: var(--color-cream);">
           I coined the term "Agentic Ops" because I believe we're at an inflection point.
-          RevOps gave us process and structure. Agentic Ops gives us autonomous execution.
-          The operators who figure this out first will have an unfair advantage.
+          RevOps gave us process and structure.
+          <span class="text-gradient">Agentic Ops gives us autonomous execution.</span>
         </p>
-        <p>
-          Most people in GTM are confused about AI agents. They don't know what agents are,
-          where to start, or which tools to trust. There are hundreds of platforms, conflicting
-          advice, and a lot of vaporware. I cut through that by sharing what I'm actually
-          building and deploying — no fluff, no vendor pitches.
-        </p>
+        <div class="section-separator-accent mx-auto mt-10"></div>
+      </div>
+    </div>
+  </section>
 
-        <h2>What I write about</h2>
-        <ul>
-          <li>AI agent deployment playbooks for GTM teams</li>
-          <li>Tool reviews from someone who actually uses them</li>
-          <li>Real operator logs — what I deployed, what worked, what broke</li>
-          <li>Frameworks for transitioning from RevOps to Agentic Ops</li>
-          <li>The GTM Agent Stack and how to build yours</li>
-        </ul>
+  <!-- Gradient transition: dark to light -->
+  <div class="h-20 md:h-24" style="background: linear-gradient(to bottom, var(--color-dark), var(--color-cream));"></div>
 
-        <h2>Get in touch</h2>
-        <p>
-          The best way to follow my work is through the
-          <a href="/" class="text-accent hover:text-accent-hover underline">Agentic Ops newsletter</a>.
-          You can also find me on
-          <a href="https://linkedin.com/in/danielbrady" class="text-accent hover:text-accent-hover underline">LinkedIn</a>
-          where I share shorter-form insights.
+  <!-- More about Agentic Ops + What I Write -->
+  <section class="section relative">
+    <div class="gradient-orb-lg" style="width: 500px; height: 500px; bottom: -200px; right: -200px;"></div>
+    <div class="container-wide relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+        <div class="reveal-on-scroll">
+          <div class="accent-bar-wide mb-8"></div>
+          <h2 class="text-display-sm mb-8 text-balance">Why Agentic Ops</h2>
+          <div class="prose">
+            <p>
+              The operators who figure this out first will have an unfair advantage.
+            </p>
+            <p>
+              Most people in GTM are confused about AI agents. They don't know what agents are,
+              where to start, or which tools to trust. There are hundreds of platforms, conflicting
+              advice, and a lot of vaporware. I cut through that by sharing what I'm actually
+              building and deploying — no fluff, no vendor pitches.
+            </p>
+          </div>
+        </div>
+
+        <div class="reveal-on-scroll">
+          <div class="accent-bar-wide mb-8"></div>
+          <h2 class="text-display-sm mb-8 text-balance">What I write about</h2>
+          <div class="space-y-4">
+            {[
+              "AI agent deployment playbooks for GTM teams",
+              "Tool reviews from someone who actually uses them",
+              "Real operator logs — what I deployed, what worked, what broke",
+              "Frameworks for transitioning from RevOps to Agentic Ops",
+              "The GTM Agent Stack and how to build yours",
+            ].map((item) => (
+              <div class="flex items-start gap-4 card-glow p-4 rounded-xl">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center mt-0.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                </span>
+                <p class="text-ink-light">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get in Touch CTA -->
+  <section class="bg-gradient-warm pattern-dots-sparse relative overflow-hidden">
+    <div class="container-md section">
+      <div class="reveal-on-scroll text-center">
+        <div class="section-separator-accent mx-auto mb-8"></div>
+        <h2 class="text-display-sm mb-6 text-balance">Get in touch</h2>
+        <p class="text-lg text-ink-light max-w-xl mx-auto mb-10">
+          The best way to follow my work is through the Agentic Ops newsletter.
+          You can also find me on LinkedIn where I share shorter-form insights.
         </p>
-        <p>
-          For speaking, advisory, or collaboration inquiries, head to the
-          <a href="/work-with-me" class="text-accent hover:text-accent-hover underline">Work With Me</a> page.
-        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/" class="btn btn-primary btn-lg btn-glow">
+            Subscribe to Newsletter
+          </a>
+          <a href="https://linkedin.com/in/danielbrady" class="btn btn-secondary btn-lg">
+            LinkedIn
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+          </a>
+          <a href="/work-with-me" class="btn btn-secondary btn-lg">
+            Work With Me
+          </a>
+        </div>
       </div>
     </div>
   </section>

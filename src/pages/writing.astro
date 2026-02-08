@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Placeholder posts until content collections are set up
 const posts = [
   {
     title: "Deploying Your First GTM Agent: A Practical Guide",
@@ -9,6 +8,7 @@ const posts = [
     date: "February 2026",
     category: "Playbooks",
     slug: "deploying-your-first-gtm-agent",
+    featured: true,
   },
   {
     title: "From RevOps to Agentic Ops: Why the Transition is Inevitable",
@@ -41,74 +41,135 @@ const posts = [
 ];
 
 const categories = ["All", "Agentic Ops", "Playbooks", "Tool Reviews", "Agent Logs"];
+const featuredPost = posts.find(p => p.featured);
+const regularPosts = posts.filter(p => !p.featured);
 ---
 
 <BaseLayout title="Writing" description="Frameworks, playbooks, tool reviews, and real agent deployment logs from the frontier of AI GTM operations.">
-  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
-    <div class="mb-12">
-      <p class="font-mono text-sm text-accent mb-4">Writing</p>
-      <h1 class="text-4xl md:text-5xl mb-4">Thinking out loud</h1>
-      <p class="text-xl text-ink-light max-w-2xl">
-        Frameworks, playbooks, tool reviews, and real agent deployment logs.
-        From the frontier of AI + GTM operations.
-      </p>
-    </div>
 
-    <!-- Category filters -->
-    <div class="flex flex-wrap gap-2 mb-10">
-      {categories.map((cat, i) => (
-        <button
-          class:list={[
-            "px-4 py-2 text-sm rounded-lg border transition-colors",
-            i === 0
-              ? "bg-ink text-cream border-ink"
-              : "bg-white text-ink-light border-border hover:border-ink hover:text-ink",
-          ]}
-        >
-          {cat}
-        </button>
-      ))}
+  <!-- Hero -->
+  <section class="bg-gradient-warm relative overflow-hidden">
+    <div class="gradient-orb-lg" style="width: 600px; height: 600px; top: -200px; left: -100px;"></div>
+    <div class="container-wide relative z-10 pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="max-w-3xl animate-fade-in">
+        <p class="text-label mb-6" style="color: var(--color-accent);">Writing</p>
+        <h1 class="text-display text-balance mb-6">
+          Thinking<br />
+          <span class="text-gradient">out loud</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-ink-light leading-relaxed max-w-2xl">
+          Frameworks, playbooks, tool reviews, and real agent deployment logs. From the frontier of AI + GTM operations.
+        </p>
+      </div>
     </div>
+  </section>
 
-    <!-- Posts -->
-    <div class="divide-y divide-border">
-      {posts.map((post) => (
-        <a href={`/writing/${post.slug}`} class="block py-8 group">
-          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-            <div>
-              <div class="flex items-center gap-3 mb-2">
-                <span class="font-mono text-xs text-accent">{post.category}</span>
-                <span class="text-ink-lighter">-</span>
-                <span class="font-mono text-xs text-ink-lighter">{post.date}</span>
+  <section class="section relative">
+    <div class="container-wide relative z-10">
+
+      <!-- Category Filters -->
+      <div class="flex flex-wrap gap-2 mb-12 reveal-on-scroll">
+        {categories.map((cat, i) => (
+          <button
+            class:list={[
+              "btn press-scale",
+              i === 0 ? "btn-primary" : "btn-secondary",
+            ]}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Featured Post — gradient border technique -->
+      {featuredPost && (
+        <a href={`/writing/${featuredPost.slug}`} class="block mb-12 reveal-on-scroll group">
+          <div class="rounded-2xl p-px hover-scale-sm" style="background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));">
+            <div class="bg-cream rounded-2xl p-8 md:p-12 relative overflow-hidden">
+              <div class="gradient-orb" style="width: 300px; height: 300px; top: -100px; right: -100px;"></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="badge-accent">{featuredPost.category}</span>
+                  <span class="text-label">{featuredPost.date}</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-serif mb-4 group-hover:text-accent transition-colors text-balance">
+                  {featuredPost.title}
+                </h2>
+                <p class="text-lg text-ink-light max-w-2xl mb-6">
+                  {featuredPost.description}
+                </p>
+                <span class="btn btn-dark inline-flex items-center gap-2">
+                  Read article
+                  <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </span>
               </div>
-              <h2 class="text-xl md:text-2xl group-hover:text-accent transition-colors mb-2">
-                {post.title}
-              </h2>
-              <p class="text-ink-light">{post.description}</p>
             </div>
-            <svg class="w-5 h-5 text-ink-lighter group-hover:text-accent transition-colors flex-shrink-0 mt-1 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
           </div>
         </a>
-      ))}
-    </div>
+      )}
 
-    <!-- Newsletter CTA -->
-    <div class="mt-16 p-8 bg-white border border-border rounded-xl text-center">
-      <h3 class="text-2xl mb-3">Get new posts in your inbox</h3>
-      <p class="text-ink-light mb-6 max-w-md mx-auto">
-        Subscribe to the Agentic Ops newsletter for weekly frameworks, agent logs, and tool reviews.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
-        <input
-          type="email"
-          placeholder="you@company.com"
-          class="flex-1 px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-        />
-        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
-          Subscribe
-        </button>
+      <!-- Post Grid — glow cards for shimmer hover effect -->
+      <div class="grid md:grid-cols-2 gap-6 stagger-children">
+        {regularPosts.map((post) => (
+          <a href={`/writing/${post.slug}`} class="block group reveal-on-scroll">
+            <article class="card-glow rounded-2xl p-6 md:p-8 h-full flex flex-col">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="badge-accent">{post.category}</span>
+                <span class="text-label">{post.date}</span>
+              </div>
+              <h3 class="text-xl md:text-2xl font-serif mb-3 group-hover:text-accent transition-colors flex-1">
+                {post.title}
+              </h3>
+              <p class="text-ink-light mb-6">
+                {post.description}
+              </p>
+              <div class="flex items-center gap-2 text-sm font-medium text-accent group-hover:gap-3 transition-all">
+                Read more
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Gradient transition: light to dark -->
+  <div class="h-20 md:h-24" style="background: linear-gradient(to bottom, var(--color-cream), var(--color-dark));"></div>
+
+  <!-- Newsletter CTA -->
+  <section class="section-dark bg-mesh-dark relative overflow-hidden">
+    <div class="gradient-orb-lg" style="width: 500px; height: 500px; top: -150px; left: 50%; transform: translateX(-50%);"></div>
+    <div class="container-md relative z-10 section text-center">
+      <div class="reveal-on-scroll">
+        <div class="section-separator-accent mx-auto mb-8"></div>
+        <h2 class="text-display-sm mb-6">
+          Get new posts <span class="text-gradient">in your inbox</span>
+        </h2>
+        <p class="text-lg max-w-lg mx-auto mb-10" style="color: #b0b0b0;">
+          Subscribe to the Agentic Ops newsletter for weekly frameworks, agent logs, and tool reviews.
+        </p>
+        <div class="max-w-md mx-auto">
+          <div class="rounded-2xl p-px" style="background: linear-gradient(135deg, rgba(217,119,6,0.4), rgba(245,158,11,0.2), var(--color-dark-border));">
+            <div class="rounded-2xl p-6" style="background: var(--color-dark-surface);">
+              <div class="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  placeholder="you@company.com"
+                  class="flex-1 px-4 py-3 border border-white/10 rounded-lg text-sm text-cream focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                  style="background: var(--color-dark);"
+                />
+                <button class="btn btn-gradient btn-glow">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

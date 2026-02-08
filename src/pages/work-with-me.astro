@@ -4,112 +4,246 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const services = [
   {
     title: "Advisory",
+    icon: "compass",
     description: "Strategic guidance on deploying AI agents across your GTM stack. I'll help you identify the highest-impact opportunities and build your Agentic Ops roadmap.",
     details: ["GTM agent strategy and roadmap", "Tool selection and architecture", "Team enablement and change management"],
+    accent: "rgba(217,119,6,0.3)",
   },
   {
     title: "Speaking",
+    icon: "mic",
     description: "I speak at conferences, offsites, and podcasts about the transition from RevOps to Agentic Ops and the practical realities of deploying AI agents in production.",
     details: ["Conference keynotes and panels", "Team offsites and workshops", "Podcast guest appearances"],
+    accent: "rgba(59,130,246,0.3)",
   },
   {
     title: "Implementation",
+    icon: "wrench",
     description: "Hands-on help building and deploying your first AI agents. From scoping the use case to getting an agent into production and monitoring its performance.",
     details: ["Agent scoping and design", "Build and deployment", "Monitoring and iteration"],
+    accent: "rgba(16,185,129,0.3)",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Daniel's approach to AI agents is refreshingly practical. No hype, just results. Our prospecting pipeline transformed within weeks.",
+    name: "VP of Revenue Operations",
+    company: "Series B SaaS",
+  },
+  {
+    quote: "He doesn't just talk about agents — he deploys them. The frameworks he shared saved us months of trial and error.",
+    name: "Head of GTM",
+    company: "Growth-Stage Startup",
   },
 ];
 ---
 
 <BaseLayout title="Work With Me" description="Advisory, speaking, and implementation services for teams ready to deploy AI agents across their GTM stack.">
-  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
-    <div class="mb-16">
-      <p class="font-mono text-sm text-accent mb-4">Services</p>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl mb-6">Work with me</h1>
-      <p class="text-xl text-ink-light max-w-2xl leading-relaxed">
-        I help GTM teams deploy their first AI agents and build an Agentic Ops practice.
-        Whether you need strategic guidance, a keynote, or hands-on implementation.
-      </p>
-    </div>
 
-    <!-- Services -->
-    <div class="grid gap-6 mb-20">
-      {services.map((service) => (
-        <div class="bg-white border border-border rounded-xl p-8 hover:border-accent/30 transition-colors">
-          <h2 class="text-2xl mb-3">{service.title}</h2>
-          <p class="text-ink-light mb-6 max-w-xl">{service.description}</p>
-          <div class="flex flex-wrap gap-3">
-            {service.details.map((detail) => (
-              <span class="px-3 py-1.5 bg-cream border border-border rounded-lg text-sm text-ink-light">
-                {detail}
-              </span>
-            ))}
+  <!-- Hero -->
+  <section class="bg-mesh relative overflow-hidden">
+    <div class="gradient-orb-lg" style="width: 700px; height: 700px; top: -250px; right: -200px;"></div>
+    <div class="gradient-orb" style="width: 300px; height: 300px; bottom: -100px; left: 5%;"></div>
+
+    <div class="container-wide relative z-10 pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="max-w-3xl animate-fade-in">
+        <p class="text-label mb-6" style="color: var(--color-accent);">Services</p>
+        <h1 class="text-display text-balance mb-8">
+          Work<br />
+          <span class="text-gradient">with me</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-ink-light leading-relaxed max-w-2xl">
+          I help GTM teams deploy their first AI agents and build an Agentic Ops practice.
+          Whether you need strategic guidance, a keynote, or hands-on implementation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services — each card has distinct subtle gradient border color -->
+  <section class="section relative">
+    <div class="container-wide relative z-10">
+      <div class="grid lg:grid-cols-3 gap-6 stagger-children">
+        {services.map((service) => (
+          <div class="rounded-2xl p-px hover-lift reveal-on-scroll" style={`background: linear-gradient(135deg, ${service.accent}, rgba(245,158,11,0.1), var(--color-border));`}>
+            <div class="bg-cream rounded-2xl p-8 flex flex-col h-full corner-accent">
+              <!-- Icon -->
+              <div class="w-12 h-12 rounded-2xl bg-accent-light border border-accent/20 flex items-center justify-center mb-6">
+                {service.icon === "compass" && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="16.24,7.76 14.12,14.12 7.76,16.24 9.88,9.88" fill="#D97706" opacity="0.3" stroke="#D97706" stroke-width="1.5"/>
+                  </svg>
+                )}
+                {service.icon === "mic" && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                    <rect x="9" y="2" width="6" height="12" rx="3"/>
+                    <path d="M5 10a7 7 0 0014 0"/>
+                    <line x1="12" y1="17" x2="12" y2="22"/>
+                    <line x1="8" y1="22" x2="16" y2="22"/>
+                  </svg>
+                )}
+                {service.icon === "wrench" && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+                  </svg>
+                )}
+              </div>
+
+              <h2 class="text-2xl font-serif mb-3">{service.title}</h2>
+              <p class="text-ink-light mb-8 flex-1">{service.description}</p>
+
+              <div class="space-y-3">
+                {service.details.map((detail) => (
+                  <div class="flex items-center gap-3">
+                    <span class="flex-shrink-0 w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center">
+                      <span class="w-1 h-1 rounded-full bg-accent"></span>
+                    </span>
+                    <span class="text-sm text-ink-light">{detail}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="section-gradient-warm pattern-dots-sparse relative overflow-hidden">
+    <div class="container-md section">
+      <div class="text-center mb-12 reveal-on-scroll">
+        <div class="section-separator-accent mx-auto mb-8"></div>
+        <h2 class="text-display-sm text-balance">What people say</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 stagger-children">
+        {testimonials.map((t) => (
+          <div class="rounded-2xl p-px reveal-on-scroll" style="background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));">
+            <div class="card-glass rounded-2xl p-8" style="border: none;">
+              <svg class="mb-4 opacity-20" width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p class="text-lg font-serif leading-relaxed text-ink mb-6">
+                "{t.quote}"
+              </p>
+              <div>
+                <p class="font-medium text-ink">{t.name}</p>
+                <p class="text-sm text-ink-lighter">{t.company}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="section relative">
+    <div class="gradient-orb-lg" style="width: 500px; height: 500px; top: -200px; right: -200px;"></div>
+    <div class="container-md relative z-10">
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-20">
+        <!-- Left: Info -->
+        <div class="lg:col-span-2 reveal-on-scroll">
+          <div class="accent-bar-wide mb-8"></div>
+          <h2 class="text-display-sm mb-6 text-balance">Let's talk</h2>
+          <p class="text-ink-light text-lg mb-8">
+            Tell me a bit about what you're working on and how I can help. I'll get back to you within a few days.
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-accent-light border border-accent/20 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <path d="M22 4l-10 8L2 4"/>
+                </svg>
+              </div>
+              <span class="text-ink-light text-sm">Email response within days</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-accent-light border border-accent/20 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+              </div>
+              <span class="text-ink-light text-sm">Free initial consultation</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-accent-light border border-accent/20 flex items-center justify-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <span class="text-ink-light text-sm">Flexible engagement models</span>
+            </div>
           </div>
         </div>
-      ))}
-    </div>
 
-    <!-- Contact -->
-    <div class="bg-white border border-border rounded-xl p-8 md:p-12">
-      <div class="max-w-xl">
-        <h2 class="text-3xl mb-4">Let's talk</h2>
-        <p class="text-ink-light mb-8">
-          Tell me a bit about what you're working on and how I can help. I'll get back to you
-          within a few days.
-        </p>
-        <form class="space-y-4">
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-medium mb-1.5" for="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                placeholder="Your name"
-              />
+        <!-- Right: Form — gradient border technique on the form card -->
+        <div class="lg:col-span-3 reveal-on-scroll">
+          <div class="rounded-2xl p-px" style="background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));">
+            <div class="bg-cream rounded-2xl p-8 md:p-10" style="box-shadow: var(--shadow-lg);">
+              <form class="space-y-5">
+                <div class="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label class="block text-sm font-medium mb-2" for="name">Name</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium mb-2" for="email">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      placeholder="you@company.com"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2" for="type">What are you looking for?</label>
+                  <select
+                    id="type"
+                    name="type"
+                    class="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                  >
+                    <option value="">Select an option</option>
+                    <option value="advisory">Advisory</option>
+                    <option value="speaking">Speaking</option>
+                    <option value="implementation">Implementation</option>
+                    <option value="other">Something else</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2" for="message">Tell me more</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    class="w-full px-4 py-3 bg-cream border border-border rounded-xl text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+                    placeholder="What are you working on? What would be most helpful?"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-gradient btn-glow btn-lg w-full justify-center"
+                >
+                  Send message
+                </button>
+              </form>
             </div>
-            <div>
-              <label class="block text-sm font-medium mb-1.5" for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                placeholder="you@company.com"
-              />
-            </div>
           </div>
-          <div>
-            <label class="block text-sm font-medium mb-1.5" for="type">What are you looking for?</label>
-            <select
-              id="type"
-              name="type"
-              class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-            >
-              <option value="">Select an option</option>
-              <option value="advisory">Advisory</option>
-              <option value="speaking">Speaking</option>
-              <option value="implementation">Implementation</option>
-              <option value="other">Something else</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1.5" for="message">Tell me more</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
-              placeholder="What are you working on? What would be most helpful?"
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="px-8 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors"
-          >
-            Send message
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </section>

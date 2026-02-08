@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   AGENTIC OPS — DESIGN SYSTEM
+   Enhanced global styles for a rich, modern editorial site.
+   ========================================================================== */
+
 @theme {
-  /* Colors */
+  /* --- Colors --- */
   --color-cream: #FAFAF7;
   --color-cream-dark: #F0EFE9;
   --color-ink: #1a1a1a;
@@ -10,15 +15,49 @@
   --color-accent: #D97706;
   --color-accent-hover: #B45309;
   --color-accent-light: #FEF3C7;
+  --color-accent-glow: #D9770640;
   --color-border: #E5E2DB;
+  --color-border-light: #E5E2DB80;
+  --color-dark: #111111;
+  --color-dark-surface: #1a1a1a;
+  --color-dark-border: #2a2a2a;
+  --color-white: #ffffff;
 
-  /* Fonts */
+  /* --- Fonts --- */
   --font-serif: 'DM Serif Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.12);
+  --shadow-glow: 0 0 30px var(--color-accent-glow);
+  --shadow-glow-lg: 0 0 60px var(--color-accent-glow);
+
+  /* --- Easings --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.22, 1.2, 0.36, 1);
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms var(--ease-out-expo);
+  --transition-base: 300ms var(--ease-out-expo);
+  --transition-slow: 500ms var(--ease-out-expo);
+
+  /* --- Border Radius --- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
 }
 
-/* Base styles */
+
+/* ==========================================================================
+   1. BASE STYLES
+   ========================================================================== */
+
 html {
   scroll-behavior: smooth;
 }
@@ -32,13 +71,1043 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Serif headings */
 h1, h2, h3 {
   font-family: var(--font-serif);
   line-height: 1.2;
 }
 
-/* Prose styles for long-form content */
+::selection {
+  background-color: var(--color-accent-light);
+  color: var(--color-ink);
+}
+
+
+/* ==========================================================================
+   2. TYPOGRAPHY ENHANCEMENTS
+   ========================================================================== */
+
+/* --- Display text (oversized hero headings) --- */
+.text-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.text-display-sm {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+/* --- Text gradient --- */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #F59E0B 50%, var(--color-accent-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-subtle {
+  background: linear-gradient(135deg, var(--color-ink) 0%, var(--color-ink-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-light {
+  background: linear-gradient(135deg, var(--color-white) 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Text shadow utilities --- */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.text-shadow-md {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.text-shadow-lg {
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px var(--color-accent-glow);
+}
+
+/* --- Balanced text wrapping --- */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* --- Metadata / label text --- */
+.text-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-ink-lighter);
+}
+
+
+/* ==========================================================================
+   3. GRADIENT UTILITIES
+   ========================================================================== */
+
+/* --- Background gradients --- */
+.bg-gradient-warm {
+  background: linear-gradient(135deg, #FAFAF7 0%, #FEF3C7 50%, #FAFAF7 100%);
+}
+
+.bg-gradient-accent {
+  background: linear-gradient(135deg, var(--color-accent) 0%, #F59E0B 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 50%, #222222 100%);
+}
+
+.bg-gradient-radial {
+  background: radial-gradient(ellipse at center, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+}
+
+.bg-gradient-radial-accent {
+  background: radial-gradient(ellipse at 30% 50%, var(--color-accent-light) 0%, transparent 60%);
+}
+
+/* --- Animated gradient background --- */
+.bg-gradient-animated {
+  background: linear-gradient(
+    -45deg,
+    var(--color-cream),
+    var(--color-accent-light),
+    var(--color-cream-dark),
+    var(--color-cream)
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Gradient border (pseudo-element technique) --- */
+.gradient-border {
+  position: relative;
+  background: var(--color-cream);
+  border-radius: var(--radius-md);
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-accent-hover));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+}
+
+.gradient-border-2::before {
+  padding: 2px;
+}
+
+
+/* ==========================================================================
+   4. MESH GRADIENT BACKGROUNDS
+   ========================================================================== */
+
+.bg-mesh {
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(at 20% 20%, #FEF3C7 0%, transparent 50%),
+    radial-gradient(at 80% 20%, #FDE68A40 0%, transparent 50%),
+    radial-gradient(at 50% 60%, #D9770610 0%, transparent 50%),
+    radial-gradient(at 80% 80%, #FEF3C740 0%, transparent 40%);
+}
+
+.bg-mesh-dark {
+  background-color: var(--color-dark);
+  background-image:
+    radial-gradient(at 20% 30%, #D9770615 0%, transparent 50%),
+    radial-gradient(at 70% 20%, #F59E0B08 0%, transparent 40%),
+    radial-gradient(at 50% 70%, #D9770610 0%, transparent 50%),
+    radial-gradient(at 90% 80%, #B4530908 0%, transparent 40%);
+}
+
+.bg-mesh-hero {
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(at 0% 0%, #FEF3C7 0%, transparent 50%),
+    radial-gradient(at 100% 0%, #D9770612 0%, transparent 40%),
+    radial-gradient(at 50% 100%, #FDE68A30 0%, transparent 50%);
+}
+
+.bg-mesh-animated {
+  background-color: var(--color-cream);
+  background-image:
+    radial-gradient(at 20% 20%, #FEF3C7 0%, transparent 50%),
+    radial-gradient(at 80% 20%, #FDE68A40 0%, transparent 50%),
+    radial-gradient(at 50% 60%, #D9770610 0%, transparent 50%);
+  background-size: 200% 200%;
+  animation: meshMove 20s ease infinite;
+}
+
+@keyframes meshMove {
+  0%, 100% { background-position: 0% 0%; }
+  25% { background-position: 50% 20%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 30% 80%; }
+}
+
+
+/* ==========================================================================
+   5. GLOW EFFECTS
+   ========================================================================== */
+
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-lg {
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px rgba(217, 119, 6, 0.15), 0 0 80px rgba(217, 119, 6, 0.08);
+}
+
+.glow-pulse {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px var(--color-accent-glow); }
+  50% { box-shadow: 0 0 50px var(--color-accent-glow), 0 0 80px rgba(217, 119, 6, 0.1); }
+}
+
+/* Soft glow behind element (use on a wrapper) */
+.glow-behind {
+  position: relative;
+}
+
+.glow-behind::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse, var(--color-accent-glow) 0%, transparent 70%);
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(30px);
+}
+
+
+/* ==========================================================================
+   6. GLASS MORPHISM
+   ========================================================================== */
+
+.glass {
+  background: rgba(250, 250, 247, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 226, 219, 0.5);
+}
+
+.glass-heavy {
+  background: rgba(250, 250, 247, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(229, 226, 219, 0.6);
+}
+
+.glass-dark {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark-heavy {
+  background: rgba(17, 17, 17, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-accent {
+  background: rgba(217, 119, 6, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(217, 119, 6, 0.15);
+}
+
+
+/* ==========================================================================
+   7. CARD STYLES
+   ========================================================================== */
+
+/* --- Base card --- */
+.card {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+/* --- Elevated card --- */
+.card-elevated {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-base);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+/* --- Glass card --- */
+.card-glass {
+  background: rgba(250, 250, 247, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 226, 219, 0.5);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.card-glass:hover {
+  background: rgba(250, 250, 247, 0.8);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Gradient border card --- */
+.card-gradient {
+  position: relative;
+  background: var(--color-cream);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.card-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--color-accent), #F59E0B, var(--color-border));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+  opacity: 0.6;
+}
+
+.card-gradient:hover::before {
+  opacity: 1;
+}
+
+/* --- Hover lift card --- */
+.card-hover {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--color-accent);
+}
+
+/* --- Glow card --- */
+.card-glow {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  transition: all var(--transition-base);
+}
+
+.card-glow:hover {
+  box-shadow: var(--shadow-glow-lg);
+  border-color: rgba(217, 119, 6, 0.3);
+}
+
+/* --- Dark card (for dark sections) --- */
+.card-dark {
+  background: var(--color-dark-surface);
+  border: 1px solid var(--color-dark-border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  color: var(--color-cream);
+  transition: all var(--transition-base);
+}
+
+.card-dark:hover {
+  border-color: rgba(217, 119, 6, 0.4);
+  box-shadow: 0 0 30px rgba(217, 119, 6, 0.08);
+}
+
+/* --- Bento card (for grid layouts) --- */
+.card-bento {
+  background: var(--color-cream);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.card-bento:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+
+/* ==========================================================================
+   8. SECTION STYLES
+   ========================================================================== */
+
+/* --- Standard section spacing --- */
+.section {
+  padding: 5rem 0;
+}
+
+.section-lg {
+  padding: 8rem 0;
+}
+
+/* --- Dark section --- */
+.section-dark {
+  background-color: var(--color-dark);
+  color: var(--color-cream);
+}
+
+.section-dark h1,
+.section-dark h2,
+.section-dark h3 {
+  color: var(--color-cream);
+}
+
+.section-dark p {
+  color: #b0b0b0;
+}
+
+.section-dark .text-label {
+  color: var(--color-accent);
+}
+
+/* --- Gradient section backgrounds --- */
+.section-gradient {
+  background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-dark) 100%);
+}
+
+.section-gradient-warm {
+  background: linear-gradient(180deg, var(--color-cream) 0%, #FEF3C7 50%, var(--color-cream) 100%);
+}
+
+.section-gradient-dark {
+  background: linear-gradient(180deg, var(--color-dark) 0%, #1a1a1a 100%);
+  color: var(--color-cream);
+}
+
+/* --- Section dividers --- */
+.divider-angled {
+  position: relative;
+}
+
+.divider-angled::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: var(--color-cream);
+  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+.divider-angled-reverse::after {
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
+}
+
+.divider-curve {
+  position: relative;
+}
+
+.divider-curve::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: var(--color-cream);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+
+/* Dark dividers (cream-to-dark transition) */
+.divider-angled-dark::after {
+  background: var(--color-dark);
+}
+
+.divider-curve-dark::after {
+  background: var(--color-dark);
+}
+
+/* --- Subtle section separator line --- */
+.section-separator {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.section-separator-accent {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #F59E0B);
+  border-radius: 2px;
+}
+
+
+/* ==========================================================================
+   9. DECORATIVE PATTERNS
+   ========================================================================== */
+
+/* --- Dot grid background --- */
+.pattern-dots {
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.pattern-dots-sparse {
+  background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.pattern-dots-dark {
+  background-image: radial-gradient(circle, var(--color-dark-border) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* --- Line grid --- */
+.pattern-lines {
+  background-image:
+    linear-gradient(var(--color-border-light) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-light) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.pattern-lines-dark {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* --- Horizontal lines --- */
+.pattern-horizontal {
+  background-image: linear-gradient(var(--color-border-light) 1px, transparent 1px);
+  background-size: 100% 32px;
+}
+
+/* --- Diagonal lines --- */
+.pattern-diagonal {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    var(--color-border-light) 10px,
+    var(--color-border-light) 11px
+  );
+}
+
+/* --- Noise texture overlay --- */
+.pattern-noise {
+  position: relative;
+}
+
+.pattern-noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.15'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+/* Ensure content sits above noise */
+.pattern-noise > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Faded overlay (gradient fade to background) --- */
+.fade-bottom {
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+
+/* ==========================================================================
+   10. ANIMATIONS
+   ========================================================================== */
+
+/* --- Fade in up (original, enhanced) --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.7s var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* --- Fade in (no transform) --- */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade {
+  animation: fadeIn 0.6s ease forwards;
+  opacity: 0;
+}
+
+/* --- Slide up --- */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* --- Slide in left --- */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* --- Slide in right --- */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* --- Scale up --- */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.7s var(--ease-out-back) forwards;
+  opacity: 0;
+}
+
+/* --- Blur in --- */
+@keyframes blurIn {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-blur-in {
+  animation: blurIn 0.8s var(--ease-out-expo) forwards;
+  opacity: 0;
+}
+
+/* --- Rotate in --- */
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-6deg) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+.animate-rotate-in {
+  animation: rotateIn 0.7s var(--ease-out-back) forwards;
+  opacity: 0;
+}
+
+/* --- Float (continuous) --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* --- Subtle pulse (continuous) --- */
+@keyframes subtlePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-pulse-subtle {
+  animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* --- Spin slow (for decorative elements) --- */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+/* --- Animation delays --- */
+.animate-delay-1 { animation-delay: 0.1s; }
+.animate-delay-2 { animation-delay: 0.2s; }
+.animate-delay-3 { animation-delay: 0.3s; }
+.animate-delay-4 { animation-delay: 0.4s; }
+.animate-delay-5 { animation-delay: 0.5s; }
+.animate-delay-6 { animation-delay: 0.6s; }
+.animate-delay-7 { animation-delay: 0.7s; }
+.animate-delay-8 { animation-delay: 0.8s; }
+.animate-delay-9 { animation-delay: 0.9s; }
+.animate-delay-10 { animation-delay: 1.0s; }
+
+/* --- Stagger children (apply to parent, children get incremental delay) --- */
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(11) { animation-delay: 0.55s; }
+.stagger-children > *:nth-child(12) { animation-delay: 0.6s; }
+
+/* --- Scroll-triggered reveal (CSS-only via scroll-driven animations) --- */
+@supports (animation-timeline: view()) {
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeInUp 0.7s var(--ease-out-expo) forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+
+  .reveal-scale-on-scroll {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleUp 0.7s var(--ease-out-expo) forwards;
+    animation-timeline: view();
+    animation-range: entry 0% entry 30%;
+  }
+}
+
+/* Fallback for browsers without scroll-driven animations */
+@supports not (animation-timeline: view()) {
+  .reveal-on-scroll,
+  .reveal-scale-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* ==========================================================================
+   11. INTERACTIVE STATES
+   ========================================================================== */
+
+/* --- Link with animated underline --- */
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: color var(--transition-fast);
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), #F59E0B);
+  transition: width var(--transition-base);
+  border-radius: 1px;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+.link-underline:hover {
+  color: var(--color-accent);
+}
+
+/* --- Link underline always visible, animates on hover --- */
+.link-underline-always {
+  position: relative;
+  text-decoration: none;
+  color: var(--color-ink);
+  transition: color var(--transition-fast);
+}
+
+.link-underline-always::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  transition: all var(--transition-base);
+  border-radius: 1px;
+}
+
+.link-underline-always:hover::after {
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent), #F59E0B);
+}
+
+.link-underline-always:hover {
+  color: var(--color-accent);
+}
+
+/* --- Button glow on hover --- */
+.btn-glow {
+  transition: all var(--transition-base);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 20px var(--color-accent-glow), 0 0 40px rgba(217, 119, 6, 0.1);
+}
+
+/* --- Interactive scale --- */
+.hover-lift {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hover-scale {
+  transition: transform var(--transition-base);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-sm {
+  transition: transform var(--transition-fast);
+}
+
+.hover-scale-sm:hover {
+  transform: scale(1.005);
+}
+
+/* --- Active press --- */
+.press-scale:active {
+  transform: scale(0.98);
+  transition: transform 100ms ease;
+}
+
+/* --- Focus ring --- */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* --- Image hover zoom --- */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform var(--transition-slow);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+
+/* ==========================================================================
+   12. BUTTON STYLES
+   ========================================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+  box-shadow: 0 0 20px var(--color-accent-glow);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  padding: 0.5rem 1rem;
+}
+
+.btn-ghost:hover {
+  background: var(--color-cream-dark);
+  color: var(--color-accent);
+}
+
+.btn-dark {
+  background: var(--color-ink);
+  color: var(--color-cream);
+}
+
+.btn-dark:hover {
+  background: #333;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, var(--color-accent), #F59E0B);
+  color: white;
+  border: none;
+}
+
+.btn-gradient:hover {
+  box-shadow: 0 0 24px var(--color-accent-glow);
+  transform: translateY(-1px);
+}
+
+/* Large button variant */
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: var(--radius-md);
+}
+
+
+/* ==========================================================================
+   13. PROSE STYLES (Long-form content)
+   ========================================================================== */
+
 .prose {
   max-width: 720px;
   margin: 0 auto;
@@ -95,24 +1164,256 @@ h1, h2, h3 {
   border-radius: 0.25rem;
 }
 
-/* Fade-in animation for scroll reveals */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: rgba(217, 119, 6, 0.3);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--transition-fast);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+  margin: 3rem 0;
+}
+
+.prose img {
+  border-radius: var(--radius-md);
+  margin: 2rem 0;
+}
+
+/* Prose variant for dark sections */
+.prose-dark h2,
+.prose-dark h3 {
+  color: var(--color-cream);
+}
+
+.prose-dark p,
+.prose-dark li {
+  color: #b0b0b0;
+}
+
+.prose-dark strong {
+  color: var(--color-cream);
+}
+
+.prose-dark blockquote {
+  color: #999;
+}
+
+.prose-dark code {
+  background-color: var(--color-dark-surface);
+  color: var(--color-accent);
+}
+
+
+/* ==========================================================================
+   14. LAYOUT UTILITIES
+   ========================================================================== */
+
+/* --- Container --- */
+.container-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-md {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-wide {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.container-full {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* --- Sticky header support --- */
+.nav-blur {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(250, 250, 247, 0.85);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.nav-blur-dark {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(17, 17, 17, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* --- Decorative accent bar --- */
+.accent-bar {
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #F59E0B);
+  border-radius: 2px;
+}
+
+.accent-bar-wide {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent), #F59E0B);
+  border-radius: 2px;
+}
+
+/* --- Decorative corner accents --- */
+.corner-accent {
+  position: relative;
+}
+
+.corner-accent::before,
+.corner-accent::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--color-accent);
+  border-style: solid;
+  opacity: 0.4;
+}
+
+.corner-accent::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.corner-accent::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* --- Badge / chip --- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 9999px;
+  background: var(--color-cream-dark);
+  color: var(--color-ink-light);
+  border: 1px solid var(--color-border);
+}
+
+.badge-accent {
+  background: var(--color-accent-light);
+  color: var(--color-accent-hover);
+  border-color: rgba(217, 119, 6, 0.2);
+}
+
+.badge-dark {
+  background: var(--color-dark-surface);
+  color: #b0b0b0;
+  border-color: var(--color-dark-border);
+}
+
+
+/* ==========================================================================
+   15. DECORATIVE ELEMENTS
+   ========================================================================== */
+
+/* --- Horizontal rule variants --- */
+.hr-gradient {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+}
+
+.hr-accent {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+}
+
+/* --- Decorative circles (position with absolute) --- */
+.deco-circle {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--color-accent-light);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.deco-circle-outline {
+  position: absolute;
+  border-radius: 9999px;
+  border: 1px solid var(--color-accent);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* --- Gradient orb (large background accent) --- */
+.gradient-orb {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, var(--color-accent-glow), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.gradient-orb-lg {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.12), transparent 70%);
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+
+/* ==========================================================================
+   16. RESPONSIVE UTILITIES
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .text-display {
+    font-size: clamp(2.5rem, 10vw, 4rem);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .text-display-sm {
+    font-size: clamp(1.75rem, 6vw, 2.5rem);
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+
+  .section-lg {
+    padding: 5rem 0;
+  }
+
+  .divider-angled::after,
+  .divider-curve::after {
+    height: 40px;
   }
 }
 
-.animate-fade-in {
-  animation: fadeInUp 0.6s ease-out forwards;
-  opacity: 0;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
