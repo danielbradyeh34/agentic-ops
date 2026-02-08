@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: "Advisory",
+    description: "Strategic guidance on deploying AI agents across your GTM stack. I'll help you identify the highest-impact opportunities and build your Agentic Ops roadmap.",
+    details: ["GTM agent strategy and roadmap", "Tool selection and architecture", "Team enablement and change management"],
+  },
+  {
+    title: "Speaking",
+    description: "I speak at conferences, offsites, and podcasts about the transition from RevOps to Agentic Ops and the practical realities of deploying AI agents in production.",
+    details: ["Conference keynotes and panels", "Team offsites and workshops", "Podcast guest appearances"],
+  },
+  {
+    title: "Implementation",
+    description: "Hands-on help building and deploying your first AI agents. From scoping the use case to getting an agent into production and monitoring its performance.",
+    details: ["Agent scoping and design", "Build and deployment", "Monitoring and iteration"],
+  },
+];
+---
+
+<BaseLayout title="Work With Me" description="Advisory, speaking, and implementation services for teams ready to deploy AI agents across their GTM stack.">
+  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
+    <div class="mb-16">
+      <p class="font-mono text-sm text-accent mb-4">Services</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl mb-6">Work with me</h1>
+      <p class="text-xl text-ink-light max-w-2xl leading-relaxed">
+        I help GTM teams deploy their first AI agents and build an Agentic Ops practice.
+        Whether you need strategic guidance, a keynote, or hands-on implementation.
+      </p>
+    </div>
+
+    <!-- Services -->
+    <div class="grid gap-6 mb-20">
+      {services.map((service) => (
+        <div class="bg-white border border-border rounded-xl p-8 hover:border-accent/30 transition-colors">
+          <h2 class="text-2xl mb-3">{service.title}</h2>
+          <p class="text-ink-light mb-6 max-w-xl">{service.description}</p>
+          <div class="flex flex-wrap gap-3">
+            {service.details.map((detail) => (
+              <span class="px-3 py-1.5 bg-cream border border-border rounded-lg text-sm text-ink-light">
+                {detail}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Contact -->
+    <div class="bg-white border border-border rounded-xl p-8 md:p-12">
+      <div class="max-w-xl">
+        <h2 class="text-3xl mb-4">Let's talk</h2>
+        <p class="text-ink-light mb-8">
+          Tell me a bit about what you're working on and how I can help. I'll get back to you
+          within a few days.
+        </p>
+        <form class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1.5" for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1.5" for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                placeholder="you@company.com"
+              />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1.5" for="type">What are you looking for?</label>
+            <select
+              id="type"
+              name="type"
+              class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+            >
+              <option value="">Select an option</option>
+              <option value="advisory">Advisory</option>
+              <option value="speaking">Speaking</option>
+              <option value="implementation">Implementation</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1.5" for="message">Tell me more</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+              placeholder="What are you working on? What would be most helpful?"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="px-8 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors"
+          >
+            Send message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

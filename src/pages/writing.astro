@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Placeholder posts until content collections are set up
+const posts = [
+  {
+    title: "Deploying Your First GTM Agent: A Practical Guide",
+    description: "Most teams overcomplicate this. Here's how to go from zero to a deployed agent in a week.",
+    date: "February 2026",
+    category: "Playbooks",
+    slug: "deploying-your-first-gtm-agent",
+  },
+  {
+    title: "From RevOps to Agentic Ops: Why the Transition is Inevitable",
+    description: "The same forces that created RevOps are now making it obsolete. Here's what comes next.",
+    date: "January 2026",
+    category: "Agentic Ops",
+    slug: "revops-to-agentic-ops",
+  },
+  {
+    title: "The AI Agent Tools Landscape: What Actually Works",
+    description: "I've tested dozens of agent platforms. Here's an honest breakdown of what delivers and what doesn't.",
+    date: "January 2026",
+    category: "Tool Reviews",
+    slug: "agent-tools-landscape",
+  },
+  {
+    title: "Agent Log: Building a Prospecting Agent with Relevance AI",
+    description: "A week-by-week log of building, deploying, and iterating on my first prospecting agent.",
+    date: "December 2025",
+    category: "Agent Logs",
+    slug: "agent-log-prospecting-relevance-ai",
+  },
+  {
+    title: "Why Your CRM Data Needs an Agent, Not Another Integration",
+    description: "Integrations move data. Agents maintain it. The difference matters more than you think.",
+    date: "December 2025",
+    category: "Agentic Ops",
+    slug: "crm-data-agents-not-integrations",
+  },
+];
+
+const categories = ["All", "Agentic Ops", "Playbooks", "Tool Reviews", "Agent Logs"];
+---
+
+<BaseLayout title="Writing" description="Frameworks, playbooks, tool reviews, and real agent deployment logs from the frontier of AI GTM operations.">
+  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
+    <div class="mb-12">
+      <p class="font-mono text-sm text-accent mb-4">Writing</p>
+      <h1 class="text-4xl md:text-5xl mb-4">Thinking out loud</h1>
+      <p class="text-xl text-ink-light max-w-2xl">
+        Frameworks, playbooks, tool reviews, and real agent deployment logs.
+        From the frontier of AI + GTM operations.
+      </p>
+    </div>
+
+    <!-- Category filters -->
+    <div class="flex flex-wrap gap-2 mb-10">
+      {categories.map((cat, i) => (
+        <button
+          class:list={[
+            "px-4 py-2 text-sm rounded-lg border transition-colors",
+            i === 0
+              ? "bg-ink text-cream border-ink"
+              : "bg-white text-ink-light border-border hover:border-ink hover:text-ink",
+          ]}
+        >
+          {cat}
+        </button>
+      ))}
+    </div>
+
+    <!-- Posts -->
+    <div class="divide-y divide-border">
+      {posts.map((post) => (
+        <a href={`/writing/${post.slug}`} class="block py-8 group">
+          <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="font-mono text-xs text-accent">{post.category}</span>
+                <span class="text-ink-lighter">-</span>
+                <span class="font-mono text-xs text-ink-lighter">{post.date}</span>
+              </div>
+              <h2 class="text-xl md:text-2xl group-hover:text-accent transition-colors mb-2">
+                {post.title}
+              </h2>
+              <p class="text-ink-light">{post.description}</p>
+            </div>
+            <svg class="w-5 h-5 text-ink-lighter group-hover:text-accent transition-colors flex-shrink-0 mt-1 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Newsletter CTA -->
+    <div class="mt-16 p-8 bg-white border border-border rounded-xl text-center">
+      <h3 class="text-2xl mb-3">Get new posts in your inbox</h3>
+      <p class="text-ink-light mb-6 max-w-md mx-auto">
+        Subscribe to the Agentic Ops newsletter for weekly frameworks, agent logs, and tool reviews.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
+        <input
+          type="email"
+          placeholder="you@company.com"
+          class="flex-1 px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

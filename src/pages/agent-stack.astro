@@ -1,0 +1,159 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const agents = [
+  {
+    layer: "Prospecting",
+    letter: "P",
+    tagline: "Find and qualify leads while you sleep",
+    description: "Prospecting agents autonomously identify, research, and qualify potential buyers. They monitor buying signals, build targeted lists, and prioritize accounts — replacing hours of manual research with always-on intelligence.",
+    useCases: [
+      "Account identification and scoring based on ICP criteria",
+      "Buying signal monitoring across job changes, funding, tech installs",
+      "Automated list building with enriched contact data",
+      "Lead prioritization and routing based on intent signals",
+    ],
+    tools: ["Relevance AI", "Clay", "Apollo", "Custom Claude agents"],
+  },
+  {
+    layer: "Enrichment",
+    letter: "E",
+    tagline: "Clean, enrich, and route data in real time",
+    description: "Enrichment agents maintain your data infrastructure. They clean records, fill gaps, deduplicate entries, and route leads — ensuring your CRM is always accurate and your team is always working with fresh data.",
+    useCases: [
+      "Real-time CRM data cleaning and deduplication",
+      "Contact and company enrichment from multiple sources",
+      "Lead scoring and dynamic segmentation",
+      "Automated data routing and assignment rules",
+    ],
+    tools: ["Relevance AI", "Claude Code", "Clearbit", "ZoomInfo"],
+  },
+  {
+    layer: "Content",
+    letter: "C",
+    tagline: "Personalized communications at machine scale",
+    description: "Content agents draft, personalize, and manage communications across your GTM motion. From outbound sequences to follow-up emails to internal summaries — they produce human-quality output at a pace no team can match.",
+    useCases: [
+      "Personalized outbound email sequences",
+      "Follow-up drafting based on meeting notes and CRM data",
+      "Sales collateral and proposal generation",
+      "Internal reporting summaries and Slack updates",
+    ],
+    tools: ["Claude", "Relevance AI", "Custom GPTs", "Jasper"],
+  },
+  {
+    layer: "Reporting",
+    letter: "R",
+    tagline: "Insights that come to you, not the other way around",
+    description: "Reporting agents proactively surface insights, build dashboards, and flag anomalies. Instead of pulling reports manually, your analytics layer runs continuously — delivering the right data to the right person at the right time.",
+    useCases: [
+      "Automated pipeline and forecast reporting",
+      "Anomaly detection across conversion rates and metrics",
+      "Proactive Slack alerts for key metric changes",
+      "Ad-hoc data analysis via natural language queries",
+    ],
+    tools: ["Claude Code", "Relevance AI", "Looker", "Custom scripts"],
+  },
+];
+---
+
+<BaseLayout title="The Agent Stack" description="The four layers of AI agents across your GTM motion — prospecting, enrichment, content, and reporting.">
+  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
+    <!-- Header -->
+    <div class="mb-16">
+      <p class="font-mono text-sm text-accent mb-4">The Framework</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl mb-6">
+        The GTM <span class="text-accent">Agent Stack</span>
+      </h1>
+      <p class="text-xl text-ink-light max-w-2xl leading-relaxed">
+        Four layers of AI agents that cover the entire go-to-market motion.
+        Each one replaces hours of manual work with autonomous execution.
+      </p>
+    </div>
+
+    <!-- Stack visualization -->
+    <div class="mb-16 p-6 bg-white border border-border rounded-xl">
+      <div class="flex items-center gap-2 mb-6">
+        <p class="font-mono text-xs text-ink-lighter uppercase tracking-wider">Stack overview</p>
+      </div>
+      <div class="space-y-2">
+        {agents.map((agent, i) => (
+          <a href={`#${agent.layer.toLowerCase()}`} class="flex items-center gap-4 p-4 rounded-lg hover:bg-cream transition-colors group">
+            <div class="w-10 h-10 rounded-lg bg-accent-light flex items-center justify-center flex-shrink-0">
+              <span class="font-mono text-sm font-medium text-accent">{agent.letter}</span>
+            </div>
+            <div class="flex-1">
+              <p class="font-medium group-hover:text-accent transition-colors">{agent.layer}</p>
+              <p class="text-sm text-ink-light">{agent.tagline}</p>
+            </div>
+            <span class="font-mono text-xs text-ink-lighter">{String(i + 1).padStart(2, '0')}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Detailed sections -->
+    <div class="space-y-20">
+      {agents.map((agent, i) => (
+        <div id={agent.layer.toLowerCase()} class="scroll-mt-24">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-12 h-12 rounded-xl bg-accent-light flex items-center justify-center">
+              <span class="font-mono text-lg font-medium text-accent">{agent.letter}</span>
+            </div>
+            <div>
+              <p class="font-mono text-xs text-ink-lighter">{String(i + 1).padStart(2, '0')} / 04</p>
+              <h2 class="text-3xl">{agent.layer}</h2>
+            </div>
+          </div>
+
+          <p class="text-ink-light text-lg mb-8 max-w-2xl">
+            {agent.description}
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white border border-border rounded-xl p-6">
+              <h3 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-4">Use cases</h3>
+              <ul class="space-y-3">
+                {agent.useCases.map((useCase) => (
+                  <li class="flex items-start gap-3 text-sm">
+                    <span class="text-accent mt-0.5">-</span>
+                    <span class="text-ink-light">{useCase}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="bg-white border border-border rounded-xl p-6">
+              <h3 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-4">Tools I use</h3>
+              <div class="flex flex-wrap gap-2">
+                {agent.tools.map((tool) => (
+                  <span class="px-3 py-1.5 bg-cream border border-border rounded-lg text-sm text-ink-light font-mono text-xs">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-20 p-8 bg-white border border-border rounded-xl text-center">
+      <h3 class="text-2xl mb-3">Want to deploy your own agents?</h3>
+      <p class="text-ink-light mb-6 max-w-md mx-auto">
+        I share step-by-step deployment guides, tool comparisons, and real agent logs every week.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
+        <input
+          type="email"
+          placeholder="you@company.com"
+          class="flex-1 px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

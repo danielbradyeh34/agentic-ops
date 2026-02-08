@@ -1,0 +1,156 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Agentic Ops — where AI agents meet go-to-market operations. By Daniel Brady." } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+import '../styles/global.css';
+
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/agentic-ops", label: "Agentic Ops" },
+  { href: "/writing", label: "Writing" },
+  { href: "/agent-stack", label: "Agent Stack" },
+  { href: "/about", label: "About" },
+  { href: "/work-with-me", label: "Work With Me" },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} — Agentic Ops</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Global styles loaded via frontmatter import -->
+  </head>
+
+  <body class="min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-cream/80 backdrop-blur-md border-b border-border">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2 group">
+          <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
+          <span class="font-mono text-sm text-ink-light">ops</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "text-sm transition-colors duration-200",
+                currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
+                  ? "text-accent font-medium"
+                  : "text-ink-light hover:text-ink",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden p-2 text-ink-light hover:text-ink transition-colors"
+          aria-label="Toggle menu"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-cream">
+        <div class="px-6 py-4 flex flex-col gap-4">
+          {navLinks.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "text-sm transition-colors duration-200",
+                currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
+                  ? "text-accent font-medium"
+                  : "text-ink-light hover:text-ink",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-border mt-24">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-8">
+          <div>
+            <a href="/" class="flex items-center gap-2 mb-3">
+              <span class="font-mono text-sm font-medium tracking-tight text-accent">agentic</span>
+              <span class="font-mono text-sm text-ink-light">ops</span>
+            </a>
+            <p class="text-sm text-ink-light max-w-xs">
+              Where AI agents meet go-to-market operations. By Daniel Brady.
+            </p>
+          </div>
+
+          <div class="flex gap-12">
+            <div>
+              <h4 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">Navigate</h4>
+              <div class="flex flex-col gap-2">
+                {navLinks.map((link) => (
+                  <a href={link.href} class="text-sm text-ink-light hover:text-ink transition-colors">
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h4 class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">Connect</h4>
+              <div class="flex flex-col gap-2">
+                <a href="https://linkedin.com/in/danielbrady" class="text-sm text-ink-light hover:text-ink transition-colors">LinkedIn</a>
+                <a href="https://twitter.com/danielbrady" class="text-sm text-ink-light hover:text-ink transition-colors">X / Twitter</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-6 border-t border-border">
+          <p class="text-xs text-ink-lighter font-mono">&copy; {new Date().getFullYear()} Daniel Brady. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile menu toggle script -->
+    <script>
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      btn?.addEventListener('click', () => {
+        menu?.classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>

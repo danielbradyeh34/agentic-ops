@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <section class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-32 md:pb-24">
+    <div class="animate-fade-in">
+      <p class="font-mono text-sm text-accent mb-4">Daniel Brady</p>
+    </div>
+    <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-ink leading-[1.1] mb-6 animate-fade-in animate-delay-1">
+      RevOps built the workflows.<br />
+      <span class="text-accent">Agentic Ops</span> deploys the agents that run them.
+    </h1>
+    <p class="text-lg md:text-xl text-ink-light max-w-2xl mb-10 animate-fade-in animate-delay-2">
+      I build and deploy AI agents across the GTM stack — prospecting, enrichment, content, and reporting.
+      Most teams are still figuring out where to start. I'm already in production.
+    </p>
+
+    <!-- Newsletter signup -->
+    <div class="animate-fade-in animate-delay-3">
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md">
+        <input
+          type="email"
+          placeholder="you@company.com"
+          class="flex-1 px-4 py-3 bg-white border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
+          Subscribe
+        </button>
+      </div>
+      <p class="text-xs text-ink-lighter mt-2 font-mono">
+        Join the Agentic Ops newsletter. No spam, unsubscribe anytime.
+      </p>
+    </div>
+  </section>
+
+  <!-- What is Agentic Ops? teaser -->
+  <section class="border-t border-border">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div>
+          <p class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">The concept</p>
+          <h2 class="text-3xl md:text-4xl mb-4">What is Agentic Ops?</h2>
+          <p class="text-ink-light mb-6">
+            Agentic Ops is the next evolution of revenue operations. Instead of building workflows
+            and hoping humans follow them, you deploy autonomous AI agents that actually execute the work —
+            from prospecting to data enrichment to reporting.
+          </p>
+          <a href="/agentic-ops" class="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-accent-hover transition-colors">
+            Read the full manifesto
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="bg-white border border-border rounded-xl p-6">
+          <p class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-4">The evolution</p>
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="font-mono text-xs text-ink-lighter mt-1">01</span>
+              <div>
+                <p class="font-medium text-sm">Manual Ops</p>
+                <p class="text-sm text-ink-light">Humans do everything. Spreadsheets, copy-paste, tribal knowledge.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="font-mono text-xs text-ink-lighter mt-1">02</span>
+              <div>
+                <p class="font-medium text-sm">RevOps</p>
+                <p class="text-sm text-ink-light">Workflows, automations, integrations. Humans still in the loop.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="font-mono text-xs text-accent mt-1">03</span>
+              <div>
+                <p class="font-medium text-sm text-accent">Agentic Ops</p>
+                <p class="text-sm text-ink-light">AI agents execute autonomously. Humans supervise and strategize.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Agent Stack preview -->
+  <section class="border-t border-border bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+      <p class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">The framework</p>
+      <h2 class="text-3xl md:text-4xl mb-4">The GTM Agent Stack</h2>
+      <p class="text-ink-light mb-10 max-w-2xl">
+        Four layers of AI agents across your go-to-market motion. Each one replaces hours of manual work
+        with autonomous execution.
+      </p>
+
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div class="border border-border rounded-xl p-6 bg-cream hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-accent-light flex items-center justify-center">
+              <span class="font-mono text-xs font-medium text-accent">P</span>
+            </div>
+            <h3 class="text-lg">Prospecting</h3>
+          </div>
+          <p class="text-sm text-ink-light">
+            Agents that find, qualify, and prioritize leads autonomously.
+            No more manual list building.
+          </p>
+        </div>
+
+        <div class="border border-border rounded-xl p-6 bg-cream hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-accent-light flex items-center justify-center">
+              <span class="font-mono text-xs font-medium text-accent">E</span>
+            </div>
+            <h3 class="text-lg">Enrichment</h3>
+          </div>
+          <p class="text-sm text-ink-light">
+            Agents that clean, enrich, route, and score your CRM data
+            in real time. Always fresh, always accurate.
+          </p>
+        </div>
+
+        <div class="border border-border rounded-xl p-6 bg-cream hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-accent-light flex items-center justify-center">
+              <span class="font-mono text-xs font-medium text-accent">C</span>
+            </div>
+            <h3 class="text-lg">Content</h3>
+          </div>
+          <p class="text-sm text-ink-light">
+            Agents that draft, personalize, and send communications
+            at scale. Human quality, machine speed.
+          </p>
+        </div>
+
+        <div class="border border-border rounded-xl p-6 bg-cream hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-accent-light flex items-center justify-center">
+              <span class="font-mono text-xs font-medium text-accent">R</span>
+            </div>
+            <h3 class="text-lg">Reporting</h3>
+          </div>
+          <p class="text-sm text-ink-light">
+            Agents that pull data, build reports, and surface insights
+            before you even ask. Always-on analytics.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <a href="/agent-stack" class="inline-flex items-center gap-2 text-accent font-medium text-sm hover:text-accent-hover transition-colors">
+          Explore the full Agent Stack
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Writing -->
+  <section class="border-t border-border">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+      <div class="flex items-center justify-between mb-10">
+        <div>
+          <p class="font-mono text-xs text-ink-lighter uppercase tracking-wider mb-3">Latest</p>
+          <h2 class="text-3xl md:text-4xl">Writing</h2>
+        </div>
+        <a href="/writing" class="text-sm text-accent font-medium hover:text-accent-hover transition-colors">
+          View all
+        </a>
+      </div>
+
+      <div class="space-y-0 divide-y divide-border">
+        <a href="/writing/deploying-your-first-gtm-agent" class="block py-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-xl group-hover:text-accent transition-colors">Deploying Your First GTM Agent: A Practical Guide</h3>
+              <p class="text-sm text-ink-light mt-1">Most teams overcomplicate this. Here's how to go from zero to a deployed agent in a week.</p>
+            </div>
+            <span class="font-mono text-xs text-ink-lighter whitespace-nowrap">Feb 2026</span>
+          </div>
+        </a>
+
+        <a href="/writing/revops-to-agentic-ops" class="block py-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-xl group-hover:text-accent transition-colors">From RevOps to Agentic Ops: Why the Transition is Inevitable</h3>
+              <p class="text-sm text-ink-light mt-1">The same forces that created RevOps are now making it obsolete. Here's what comes next.</p>
+            </div>
+            <span class="font-mono text-xs text-ink-lighter whitespace-nowrap">Jan 2026</span>
+          </div>
+        </a>
+
+        <a href="/writing/agent-tools-landscape" class="block py-6 group">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-xl group-hover:text-accent transition-colors">The AI Agent Tools Landscape: What Actually Works</h3>
+              <p class="text-sm text-ink-light mt-1">I've tested dozens of agent platforms. Here's an honest breakdown of what delivers and what doesn't.</p>
+            </div>
+            <span class="font-mono text-xs text-ink-lighter whitespace-nowrap">Jan 2026</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof / CTA -->
+  <section class="border-t border-border bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-20 text-center">
+      <h2 class="text-3xl md:text-4xl mb-4">Stay ahead of the curve</h2>
+      <p class="text-ink-light mb-8 max-w-lg mx-auto">
+        Get practical frameworks, agent deployment playbooks, and tool reviews —
+        direct from someone who's actually building this.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+        <input
+          type="email"
+          placeholder="you@company.com"
+          class="flex-1 px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
+          Subscribe
+        </button>
+      </div>
+      <p class="text-xs text-ink-lighter mt-3 font-mono">
+        Join GTM operators getting the Agentic Ops newsletter.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

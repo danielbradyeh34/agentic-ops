@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="What is Agentic Ops?" description="Agentic Ops is the next evolution of revenue operations — deploying autonomous AI agents across the GTM stack.">
+  <article class="max-w-4xl mx-auto px-6 pt-20 pb-16 md:pt-28">
+    <!-- Header -->
+    <div class="max-w-[720px] mx-auto mb-16">
+      <p class="font-mono text-sm text-accent mb-4">The Manifesto</p>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl mb-6">
+        What is <span class="text-accent">Agentic Ops</span>?
+      </h1>
+      <p class="text-xl text-ink-light leading-relaxed">
+        RevOps gave us workflows, integrations, and dashboards. It was a leap forward.
+        But the next leap isn't more automation — it's autonomy. That's Agentic Ops.
+      </p>
+    </div>
+
+    <!-- Content -->
+    <div class="prose">
+      <h2>The problem with RevOps today</h2>
+      <p>
+        RevOps was born from a real need: align sales, marketing, and customer success
+        around shared data and processes. It worked. We got cleaner CRMs, better reporting,
+        and automated handoffs.
+      </p>
+      <p>
+        But here's the thing nobody talks about: most RevOps teams are drowning. They're
+        buried in ticket queues, data hygiene tasks, manual enrichment, report building,
+        and integration maintenance. The workflows they built created more work, not less.
+      </p>
+      <p>
+        The average RevOps professional spends the majority of their time on tasks that
+        are repetitive, rule-based, and — critically — <strong>delegatable to an AI agent</strong>.
+      </p>
+
+      <h2>What changes with Agentic Ops</h2>
+      <p>
+        Agentic Ops is a simple shift in mindset: instead of building workflows that
+        <em>humans execute</em>, you deploy agents that <em>execute autonomously</em>
+        while humans supervise and strategize.
+      </p>
+      <p>
+        This isn't about "using AI" in the vague way everyone claims to. This is about
+        deploying discrete, purpose-built AI agents — using tools like Claude, Relevance AI,
+        and custom-built systems — that handle specific GTM functions end-to-end.
+      </p>
+
+      <blockquote>
+        "The best RevOps teams won't be the ones with the most automations. They'll be the
+        ones who deploy the best agents."
+      </blockquote>
+
+      <h2>The four layers of the Agentic GTM Stack</h2>
+      <p>
+        Every GTM operation can be broken into four agent-addressable layers:
+      </p>
+      <ul>
+        <li><strong>Prospecting agents</strong> — Find, qualify, and prioritize leads. Build lists,
+        research accounts, identify buying signals. No more manual prospecting.</li>
+        <li><strong>Enrichment agents</strong> — Clean, enrich, deduplicate, route, and score
+        data across your CRM and data warehouse. Always running, always current.</li>
+        <li><strong>Content agents</strong> — Draft personalized outreach, create follow-up sequences,
+        generate reports and summaries. Human-quality output at machine scale.</li>
+        <li><strong>Reporting agents</strong> — Pull data, surface anomalies, build dashboards,
+        and deliver insights proactively. Analytics that come to you, not the other way around.</li>
+      </ul>
+
+      <h2>Why now?</h2>
+      <p>
+        Three things converged to make Agentic Ops possible:
+      </p>
+      <ul>
+        <li><strong>Foundation models got good enough.</strong> Claude, GPT-4, and others can now
+        handle nuanced business tasks — not just chat, but actual execution with judgment.</li>
+        <li><strong>Agent frameworks matured.</strong> Tools like Relevance AI, LangChain, and
+        custom agent architectures make it practical to deploy agents without a PhD in ML.</li>
+        <li><strong>The economics work.</strong> An agent that runs 24/7 costs a fraction of the
+        human hours it replaces. The ROI isn't theoretical anymore — I've seen it firsthand.</li>
+      </ul>
+
+      <h2>Who this is for</h2>
+      <p>
+        Agentic Ops isn't for everyone yet. It's for the operators who are already comfortable
+        with RevOps fundamentals and are ready to push into the next frontier. If you're still
+        figuring out your CRM hygiene basics, do that first.
+      </p>
+      <p>
+        But if you're the kind of person who looks at a manual process and thinks
+        "an agent could do this" — you're in the right place.
+      </p>
+
+      <h2>Where to start</h2>
+      <p>
+        Start with one agent. Pick your most repetitive, time-consuming GTM task. Build an agent
+        that handles 80% of it. Supervise it for a week. Iterate. Then move to the next one.
+      </p>
+      <p>
+        That's the Agentic Ops playbook: deploy, supervise, iterate, expand.
+      </p>
+      <p>
+        I write about this every week in the <a href="/" class="text-accent hover:text-accent-hover underline">Agentic Ops newsletter</a>,
+        and I share the specific agents I'm deploying, the tools I'm using, and the frameworks
+        that actually work.
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div class="max-w-[720px] mx-auto mt-16 p-8 bg-white border border-border rounded-xl text-center">
+      <h3 class="text-2xl mb-3">Want the playbooks?</h3>
+      <p class="text-ink-light mb-6">
+        I share agent deployment frameworks, tool reviews, and real operator logs every week.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto">
+        <input
+          type="email"
+          placeholder="you@company.com"
+          class="flex-1 px-4 py-3 bg-cream border border-border rounded-lg text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+        />
+        <button class="px-6 py-3 bg-accent text-white text-sm font-medium rounded-lg hover:bg-accent-hover transition-colors">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
